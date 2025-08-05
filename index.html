@@ -103,11 +103,11 @@
                     </div>
                 </div>
                 <div>
-                    <label for="standard-burden-rate-input" class="block text-sm font-medium text-slate-700 mb-2">役員社宅の個人負担率</label>
+                    <label for="standard-burden-amount-input" class="block text-sm font-medium text-slate-700 mb-2">役員社宅の個人負担額（月額）</label>
                     <div class="flex items-center space-x-4">
-                        <input type="range" id="standard-burden-rate-slider" min="1" max="50" step="1" value="10" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
-                        <input type="text" id="standard-burden-rate-input" value="10" class="w-32 text-right bg-slate-100 rounded-md border-slate-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" inputmode="numeric">
-                        <span class="text-sm">%</span>
+                        <input type="range" id="standard-burden-amount-slider" min="10000" max="200000" step="1000" value="50000" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                        <input type="text" id="standard-burden-amount-input" value="50,000" class="w-32 text-right bg-slate-100 rounded-md border-slate-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" inputmode="numeric">
+                        <span class="text-sm">円</span>
                     </div>
                 </div>
             </div>
@@ -143,6 +143,12 @@
                         <p class="text-2xl font-semibold text-green-600" id="standard-income-tax-saving">0</p>
                         <p class="text-sm text-slate-500">円/年</p>
                     </div>
+                </div>
+                 <div class="text-right mt-2">
+                    <button class="text-xs text-blue-600 hover:underline toggle-details-btn">計算の内訳</button>
+                </div>
+                <div class="details bg-slate-200 rounded p-4 text-xs">
+                    <p id="standard-details"></p>
                 </div>
                  <div class="mt-6 text-center text-sm text-slate-500">
                     <p>※役員個人の手取り額は変わらないまま、これだけの資金が創出されます。</p>
@@ -395,30 +401,38 @@
         const standardCompensationInput = document.getElementById('standard-compensation-input');
         const standardRentSlider = document.getElementById('standard-rent-slider');
         const standardRentInput = document.getElementById('standard-rent-input');
-        const standardBurdenRateSlider = document.getElementById('standard-burden-rate-slider');
-        const standardBurdenRateInput = document.getElementById('standard-burden-rate-input');
+        const standardBurdenAmountSlider = document.getElementById('standard-burden-amount-slider');
+        const standardBurdenAmountInput = document.getElementById('standard-burden-amount-input');
         const standardCalculateBtn = document.getElementById('standard-calculate-btn');
         const standardResultsSection = document.getElementById('standard-results');
         const standardTotalSavingsEl = document.getElementById('standard-total-savings');
         const standardSocialInsuranceSavingEl = document.getElementById('standard-social-insurance-saving');
         const standardIncomeTaxSavingEl = document.getElementById('standard-income-tax-saving');
+        const standardDetailsEl = document.getElementById('standard-details');
+        const standardToggleDetailsBtns = document.querySelectorAll('#standard-results .toggle-details-btn');
 
         standardCompensationSlider.addEventListener('input', () => syncInputs(standardCompensationSlider, standardCompensationInput));
         standardCompensationInput.addEventListener('change', () => syncSlider(standardCompensationInput, standardCompensationSlider));
         standardRentSlider.addEventListener('input', () => syncInputs(standardRentSlider, standardRentInput));
         standardRentInput.addEventListener('change', () => syncSlider(standardRentInput, standardRentSlider));
-        standardBurdenRateSlider.addEventListener('input', () => syncInputs(standardBurdenRateSlider, standardBurdenRateInput, false));
-        standardBurdenRateInput.addEventListener('change', () => syncSlider(standardBurdenRateInput, standardBurdenRateSlider, false));
+        standardBurdenAmountSlider.addEventListener('input', () => syncInputs(standardBurdenAmountSlider, standardBurdenAmountInput));
+        standardBurdenAmountInput.addEventListener('change', () => syncSlider(standardBurdenAmountInput, standardBurdenAmountSlider));
         standardCalculateBtn.addEventListener('click', calculateStandardSavings);
+        standardToggleDetailsBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const detailsDiv = e.target.parentElement.nextElementSibling;
+                detailsDiv.classList.toggle('show');
+            });
+        });
 
         function calculateStandardSavings() {
             const monthlyCompensation = parseCurrency(standardCompensationInput.value);
             const monthlyRent = parseCurrency(standardRentInput.value);
-            const personalBurdenRate = parseFloat(standardBurdenRateInput.value) / 100;
+            const personalBurdenAmount = parseCurrency(standardBurdenAmountInput.value);
             
             if (monthlyRent === 0) return;
 
-            const companyRentBurden = monthlyRent * (1 - personalBurdenRate);
+            const companyRentBurden = monthlyRent - personalBurdenAmount;
             let newMonthlyCompensation = monthlyCompensation - companyRentBurden;
             if (newMonthlyCompensation < 0) newMonthlyCompensation = 0;
 
@@ -442,6 +456,16 @@
             standardTotalSavingsEl.textContent = formatCurrency(ceilToNearestTen(totalAnnualSavings));
             standardSocialInsuranceSavingEl.textContent = formatCurrency(ceilToNearestTen(annualSocialInsuranceSaving));
             standardIncomeTaxSavingEl.textContent = formatCurrency(ceilToNearestTen(annualIncomeTaxSaving));
+            
+            const effectiveIncomeTaxRate = annualCompensationBefore > 0 ? (incomeTaxBefore / annualCompensationBefore) * 100 : 0;
+            const effectiveResidentTaxRate = annualCompensationBefore > 0 ? (residentTaxBefore / annualCompensationBefore) * 100 : 0;
+
+            standardDetailsEl.innerHTML = `<strong>社会保険料削減:</strong><br>
+                役員報酬削減額 ${formatCurrency(compensationReduction)}円/月 × 12ヶ月 × 料率 ${SOCIAL_INSURANCE_RATE*100}% = ${formatCurrency(ceilToNearestTen(annualSocialInsuranceSaving))}円<br>
+                <strong class="mt-2 block">所得税・住民税削減:</strong><br>
+                <span class="text-xs ml-4">年収${formatCurrency(annualCompensationBefore)}円の場合、所得税実効税率は約${effectiveIncomeTaxRate.toFixed(1)}%、住民税は約${(RESIDENT_TAX_RATE*100).toFixed(1)}%です。</span><br>
+                導入前の税額 (${formatCurrency(ceilToNearestTen(incomeTaxBefore + residentTaxBefore))}円) - 導入後の税額 (${formatCurrency(ceilToNearestTen(incomeTaxAfter + residentTaxAfter))}円) = ${formatCurrency(ceilToNearestTen(annualIncomeTaxSaving))}円`;
+
 
             standardResultsSection.classList.add('show');
         }
