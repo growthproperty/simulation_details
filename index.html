@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>役員社宅制度 総合メリットシミュレーター</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts: Noto Sans JP -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
@@ -92,7 +90,6 @@
 </head>
 <body class="bg-white">
 
-    <!-- Header & Navigation -->
     <header class="fixed bottom-0 left-0 right-0 z-50 p-4 transition-all duration-300 md:top-0 md:bottom-auto">
         <nav class="container mx-auto flex justify-center items-center text-white">
             <div class="bg-black bg-opacity-30 backdrop-blur-sm rounded-full px-6 py-2">
@@ -107,7 +104,6 @@
 
     <main>
 
-        <!-- ① トップビジュアル (HEROセクション) -->
         <section id="hero" class="relative h-screen min-h-[600px] w-full flex flex-col items-center justify-center bg-[var(--color-navy)] text-white text-center overflow-hidden">
             <canvas id="particle-canvas"></canvas>
             <div class="hero-content px-4">
@@ -130,7 +126,6 @@
             </div>
         </section>
         
-        <!-- ② SIMULATIONセクション -->
         <section id="simulation" class="py-20 md:py-24 bg-gray-50">
              <div class="container mx-auto px-6 space-y-16">
                  <div class="text-center mb-16 scroll-reveal">
@@ -138,7 +133,6 @@
                     <p class="text-3xl md:text-4xl font-bold text-[var(--color-navy)]">メリットを試算する</p>
                 </div>
 
-                <!-- Simulator 1: For New Adopters -->
                 <section id="standard-simulator-section" class="bg-white p-6 md:p-8 rounded-2xl shadow-lg max-w-2xl mx-auto scroll-reveal">
                     <div class="text-center mb-6">
                         <h2 class="text-2xl md:text-3xl font-bold text-slate-900">Step 1: 役員社宅を未導入の方向け</h2>
@@ -215,7 +209,6 @@
                     </div>
                 </section>
 
-                <!-- Simulator 2: For Switchers -->
                 <section id="advanced-simulator" class="bg-white p-6 md:p-8 rounded-2xl shadow-lg max-w-2xl mx-auto scroll-reveal">
                     <div class="text-center">
                         <h2 class="text-2xl md:text-3xl font-bold text-slate-900">Step 2: 「社長の家探し」フル活用シミュレーター</h2>
@@ -354,7 +347,6 @@
                     </div>
                 </section>
 
-                <!-- Combined Results Section -->
                 <section id="combined-results" class="max-w-4xl mx-auto result-card">
                     <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg">
                         <div class="text-center bg-green-50 border-l-4 border-green-500 p-6 rounded-lg mb-8">
@@ -380,7 +372,6 @@
 
     </main>
 
-    <!-- ⑦ CONTACTセクション（最下部） -->
     <footer id="contact" class="bg-[var(--color-navy)] text-white py-20">
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-4">お問い合わせ</h2>
@@ -390,7 +381,8 @@
              <a href="https://share-na2.hsforms.com/24CGG0GnNTg2qJXvfY4QLRA409ilc" target="_blank" class="inline-block bg-[var(--color-gold)] text-[var(--color-navy)] font-bold py-4 px-12 rounded-lg hover:bg-yellow-300 transition-colors duration-300 text-xl shadow-lg">
                 お問い合わせはこちら
             </a>
-            <div class="mt-12 text-gray-500 text-sm">
+            <div class="mt-12 text-gray-500 text-sm space-y-2">
+                <p>※本シミュレーションは概算です。正確な金額の算出や税務判断については、必ず顧問税理士にご確認ください。</p>
                 <p>&copy; 2024 Growth Property Inc. All rights reserved.</p>
             </div>
         </div>
