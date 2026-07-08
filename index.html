@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>役員社宅制度 総合メリットシミュレーター</title>
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-    
+
     <style>
         :root {
             --color-navy: #192A4D;
@@ -54,7 +54,7 @@
         .result-card.show {
             opacity: 1;
             transform: translateY(0);
-            max-height: 3000px;
+            max-height: 4000px;
         }
         .details {
             max-height: 0;
@@ -84,10 +84,22 @@
             opacity: 0.5;
             cursor: not-allowed;
         }
+        .step-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.75rem;
+            height: 1.75rem;
+            border-radius: 9999px;
+            background-color: #1d4ed8;
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.875rem;
+            flex-shrink: 0;
+        }
     </style>
 </head>
 <body class="bg-white">
-
     <header class="fixed bottom-0 left-0 right-0 z-50 p-4 transition-all duration-300 md:top-0 md:bottom-auto">
         <nav class="container mx-auto flex justify-center items-center text-white">
             <div class="bg-black bg-opacity-30 backdrop-blur-sm rounded-full px-6 py-2">
@@ -99,9 +111,7 @@
             </div>
         </nav>
     </header>
-
     <main>
-
         <section id="hero" class="relative h-screen min-h-[600px] w-full flex flex-col items-center justify-center bg-[var(--color-navy)] text-white text-center overflow-hidden">
             <canvas id="particle-canvas"></canvas>
             <div class="hero-content px-4">
@@ -123,26 +133,23 @@
                 </a>
             </div>
         </section>
-        
+
         <section id="simulation" class="py-20 md:py-24 bg-gray-50">
              <div class="container mx-auto px-6 space-y-16">
                  <div class="text-center mb-16 scroll-reveal">
                     <h2 class="text-sm font-bold tracking-widest text-[var(--color-gold)] mb-4">SIMULATION</h2>
                     <p class="text-3xl md:text-4xl font-bold text-[var(--color-navy)]">メリットを試算する</p>
                 </div>
-
                 <section id="standard-simulator-section" class="bg-white p-6 md:p-8 rounded-2xl shadow-lg max-w-2xl mx-auto scroll-reveal">
                     <div class="text-center mb-6">
                         <h2 class="text-2xl md:text-3xl font-bold text-slate-900">Step 1: 役員社宅を未導入の方向け</h2>
                         <p class="text-slate-600 mt-2">個人契約の家賃を役員社宅に切り替えた場合の手残りの増加額を試算します。</p>
                     </div>
-
                     <div class="premise-box">
                         <h3 class="font-bold mb-2">【このシミュレーションの前提】</h3>
                         <p>このシミュレーションは、現在の「役員報酬総額」は変えずに、個人契約の家賃を会社の経費に付け替えることを前提としています。具体的には、会社が負担する家賃分だけ役員報酬を引き下げ、その差分による手残りの改善額を計算します。</p>
                         <p class="mt-2 text-xs">【社会保険料の計算について】令和8年3月分〜の東京支部 実際の等級テーブル（健康保険9.85% ＋ 厚生年金18.30%）を使用。介護保険非該当を前提。</p>
                     </div>
-
                     <div class="space-y-6">
                         <div>
                             <label for="standard-compensation-input" class="block text-sm font-medium text-slate-700 mb-2">現在の役員報酬（月額）</label>
@@ -175,7 +182,6 @@
                         </button>
                     </div>
                 </section>
-
                 <section id="standard-results" class="max-w-4xl mx-auto result-card">
                     <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg">
                         <h3 class="text-2xl md:text-3xl font-bold mb-6 text-center text-slate-900">Step 1 シミュレーション結果</h3>
@@ -206,7 +212,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="bg-green-50 border border-green-200 rounded-xl p-5">
                                 <p class="text-xs font-bold text-green-600 tracking-widest mb-3 text-center">👤 個人側のメリット</p>
                                 <div class="text-center mb-3">
@@ -239,18 +244,30 @@
                         </div>
                     </div>
                 </section>
-
                 <section id="advanced-simulator" class="bg-white p-6 md:p-8 rounded-2xl shadow-lg max-w-2xl mx-auto scroll-reveal">
                     <div class="text-center">
                         <h2 class="text-2xl md:text-3xl font-bold text-slate-900">Step 2: 「社長の家探し」フル活用シミュレーター</h2>
-                        <p class="text-slate-600 mt-2">弊社のサービスで、さらに生まれるメリットをみてみましょう。</p>
-                    </div>
-                    
-                    <div class="premise-box mt-6">
-                        <h3 class="font-bold mb-2">【「社長の家探し」プランの前提】</h3>
-                        <p>弊社のワンストップサービスでは、単に家具家電付きの物件を提供するだけでなく、引っ越し支援なども含めた総合的なサポートを行います。そのための資金として礼金やサービス料をいただいておりますが、これらは全額損金として計上できるため、法人税の削減に大きく貢献します。</p>
+                        <p class="text-slate-600 mt-2">バラバラだった住まいの支出を、家賃に一本化するとどうなるか。</p>
                     </div>
 
+                    <div class="premise-box mt-6">
+                        <h3 class="font-bold mb-3">【「社長の家探し」プランの考え方】</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3">
+                                <span class="step-badge">1</span>
+                                <p><strong>家賃のほかにも、住まいの支出はたくさんあります。</strong><br>家具・家電、引越し費用、水道光熱費。これらは通常、社長個人の税引後のお金でお支払いになっているケースがほとんどです。</p>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="step-badge">2</span>
+                                <p><strong>これらを「家賃」に一本化します。</strong><br>弊社が家具家電付きの社宅としてご提供し、引越し支援等も含めてワンストップでサポート。これらの費用は、家賃・礼金という不動産取引の条件に一本化されます。</p>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="step-badge">3</span>
+                                <p><strong>一本化した家賃に、役員社宅制度を適用します。</strong><br>その効果がどれくらいになり得るか、下のシミュレーションで試算できます。</p>
+                            </div>
+                        </div>
+                        <p class="mt-4 pt-3 border-t border-blue-200 font-bold">新たに増えるご負担は「ワンストップサービスの利用料金」だけ。礼金や水道光熱費は、これまで別の形でお支払いいただいていた費用の"通り道"が変わるだけです。</p>
+                    </div>
                     <div class="space-y-6">
                         <div>
                             <label for="advanced-compensation-input" class="block text-sm font-medium text-slate-700 mb-2">現在の役員報酬（月額）</label>
@@ -270,12 +287,13 @@
                         </div>
                         <hr class="my-4">
                         <div>
-                            <label for="service-fee-input" class="block text-sm font-medium text-slate-700 mb-2">弊社サービス料（対元家賃）</label>
+                            <label for="service-fee-input" class="block text-sm font-medium text-slate-700 mb-2">社宅ワンストップサービス利用料（対元家賃）</label>
                             <div class="flex items-center space-x-4">
                                 <input type="range" id="service-fee-slider" min="0" max="50" step="1" value="20" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
                                 <input type="text" id="service-fee-input" value="20" class="w-32 text-right bg-slate-100 rounded-md border-slate-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" inputmode="numeric">
                                 <span class="text-sm">%</span>
                             </div>
+                            <p class="text-xs text-slate-500 mt-1">= 月額 <span id="service-fee-yen" class="font-bold text-slate-700">60,000</span> 円（家具家電の調達・引越し手配・インテリアコーディネート込み）<br>※クレジットカード決済に対応しています（追加手数料なし）。</p>
                         </div>
                         <div>
                             <label for="key-money-input" class="block text-sm font-medium text-slate-700 mb-2">礼金（対新家賃）</label>
@@ -284,6 +302,7 @@
                                 <input type="text" id="key-money-input" value="6" class="w-32 text-right bg-slate-100 rounded-md border-slate-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" inputmode="numeric">
                                 <span class="text-sm">ヶ月分</span>
                             </div>
+                            <p class="text-xs text-slate-500 mt-1">家具家電・引越し費用など、従来のご自身でのご負担を置き換えたものに相当します。</p>
                         </div>
                         <div>
                             <label for="utility-input" class="block text-sm font-medium text-slate-700 mb-2">水道光熱費（月額）</label>
@@ -292,30 +311,44 @@
                                 <input type="text" id="utility-input" value="30,000" class="w-32 text-right bg-slate-100 rounded-md border-slate-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" inputmode="numeric">
                                 <span class="text-sm">円</span>
                             </div>
+                            <p class="text-xs text-slate-500 mt-1">毎月の実費相当分を、家賃と合わせて一本化します。</p>
                         </div>
                     </div>
-
                     <div class="mt-8 text-center">
                         <button id="advanced-calculate-btn" class="bg-blue-600 text-white font-bold py-3 px-10 rounded-lg hover:bg-blue-700 transition duration-300 text-lg shadow-md hover:shadow-lg">
                             メリットを計算
                         </button>
                     </div>
                 </section>
-
                 <section id="advanced-results" class="max-w-4xl mx-auto result-card">
                     <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg">
                         <h3 class="text-2xl md:text-3xl font-bold mb-6 text-center text-slate-900">Step 2 シミュレーション結果</h3>
-                        
-                        <div class="text-center bg-blue-50 border-l-4 border-blue-500 p-6 rounded-lg mb-8">
-                            <p class="text-lg text-slate-700">弊社のサービスに切り替えることで、新たに生まれるキャッシュフロー改善効果は...</p>
-                            <p class="text-4xl md:text-5xl font-bold text-blue-600 my-4">2年間の合計 <span id="advanced-total-savings">0</span> 円</p>
+
+                        <div class="text-center bg-green-50 border-l-4 border-green-500 p-6 rounded-lg mb-8">
+                            <p class="text-lg text-slate-700">利用料金を全額差し引いても、2年間の手残りは...</p>
+                            <p class="text-4xl md:text-5xl font-bold text-green-600 my-4"><span id="advanced-net-headline">0</span> 円</p>
+                            <p class="text-sm text-slate-500">（メリット合計 <span id="headline-benefit">0</span> 円 − 利用料金 <span id="headline-fee">0</span> 円）</p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6 mb-8">
+                            <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 text-center">
+                                <p class="text-xs font-bold text-slate-500 tracking-widest mb-3">利用料金の実質ご負担（試算）</p>
+                                <p class="text-sm text-slate-600">お支払いいただく利用料金 <span id="nominal-monthly-fee" class="font-bold">0</span> 円/月</p>
+                                <p class="text-2xl font-bold my-2" id="effective-monthly-fee">-</p>
+                                <p class="text-xs text-slate-500" id="effective-fee-note"></p>
+                            </div>
+                            <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 text-center">
+                                <p class="text-xs font-bold text-slate-500 tracking-widest mb-3">個人のお金と会社のお金の違い（試算）</p>
+                                <p class="text-sm text-slate-600">100万円を<strong>ご自身の手取り</strong>から払うには<br>税・社会保険料込みで報酬 <span id="wall-gross" class="font-bold text-red-600">0</span> 円が必要</p>
+                                <p class="text-sm text-slate-600 mt-2">同じ100万円を<strong>会社の経費</strong>として取り扱えた場合<br>実質負担の試算は <span id="wall-corp" class="font-bold text-green-600">700,000</span> 円</p>
+                            </div>
                         </div>
 
                         <div class="space-y-6">
                             <div class="bg-slate-100 p-4 rounded-lg">
                                 <div class="flex justify-between items-center">
                                     <div>
-                                        <h4 class="font-bold text-slate-800 mb-1">① 経費範囲拡大による節税効果</h4>
+                                        <h4 class="font-bold text-slate-800 mb-1">① 家賃への一本化による効果（試算）</h4>
                                         <p class="text-sm text-slate-500">2年間 合計</p>
                                     </div>
                                     <p class="text-2xl font-semibold text-green-600" id="advanced-opex-savings">0</p>
@@ -327,11 +360,10 @@
                                     <p id="advanced-opex-details" class="p-3 leading-relaxed"></p>
                                 </div>
                             </div>
-
                             <div class="bg-slate-100 p-4 rounded-lg">
                                 <div class="flex justify-between items-center">
                                     <div>
-                                        <h4 class="font-bold text-slate-800 mb-1">② 礼金費用償却による節税効果</h4>
+                                        <h4 class="font-bold text-slate-800 mb-1">② 礼金部分の効果（試算）</h4>
                                         <p class="text-sm text-slate-500">2年間 合計</p>
                                     </div>
                                     <p class="text-2xl font-semibold text-green-600" id="advanced-key-money-corp-savings">0</p>
@@ -343,12 +375,11 @@
                                     <p id="advanced-key-money-details" class="p-3 leading-relaxed"></p>
                                 </div>
                             </div>
-
                             <div class="bg-slate-100 p-4 rounded-lg">
                                 <div class="flex justify-between items-center">
                                     <div>
-                                        <h4 class="font-bold text-slate-800 mb-1">③ 社長の可処分所得の増加効果</h4>
-                                        <p class="text-sm text-slate-500">2年間 合計</p>
+                                        <h4 class="font-bold text-slate-800 mb-1">③ 社長の可処分所得の増加効果（試算）</h4>
+                                        <p class="text-sm text-slate-500">2年間 合計（ご自身の手取りから支払った場合との比較）</p>
                                     </div>
                                     <p class="text-2xl font-semibold text-green-600" id="advanced-personal-cf-savings">0</p>
                                 </div>
@@ -360,24 +391,23 @@
                                 </div>
                             </div>
                         </div>
-
+                        <p class="mt-4 text-xs text-slate-500">※本試算は、礼金・水道光熱費相当額を「従来はご自身の手取り等で支払っていた家具・家電・引越し・光熱費の置き換え」とみなした場合の比較です。そのため、追加コストには利用料金のみを計上しています。<br>※本シミュレーションは一定の前提に基づく概算であり、税務上の取り扱いを保証するものではありません。実際の処理は必ず顧問税理士にご確認ください。</p>
                         <div class="mt-8 pt-8 border-t-2 border-dashed">
                             <h3 class="text-xl md:text-2xl font-bold mb-6 text-center text-slate-900">費用対効果の分析</h3>
                             <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-lg text-center">
                                 <div class="flex flex-col items-center">
                                     <div class="text-lg text-slate-700">2年間のメリット合計</div>
                                     <div class="text-3xl font-bold text-slate-800 my-2" id="final-total-benefit">0 円</div>
-                                    <div class="text-lg text-slate-700">- 2年間のコスト合計（サービス料）</div>
+                                    <div class="text-lg text-slate-700">- 2年間のコスト合計（利用料金）</div>
                                     <div class="text-3xl font-bold text-red-600 my-2" id="final-total-cost">0 円</div>
                                     <hr class="w-24 border-t-2 border-slate-400 my-2">
-                                    <div class="text-lg text-slate-700">= 2年間の純利益</div>
+                                    <div class="text-lg text-slate-700">= 2年間の実質手残り増加</div>
                                     <div class="text-4xl md:text-5xl font-bold text-green-600 mt-2" id="final-net-profit">0 円</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-
                 <section id="combined-results" class="max-w-4xl mx-auto result-card">
                     <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg">
                         <div class="text-center bg-green-50 border-l-4 border-green-500 p-6 rounded-lg mb-8">
@@ -388,21 +418,20 @@
                                     <span class="font-semibold text-slate-800" id="combined-standard-benefit">0 円</span>
                                 </div>
                                 <div class="flex justify-between items-center text-lg">
-                                    <span class="text-slate-700">+ Step 2. 弊社プランの追加改善額(純利益)</span>
+                                    <span class="text-slate-700">+ Step 2. 弊社プランの追加改善額（実質）</span>
                                     <span class="font-semibold text-slate-800" id="combined-advanced-benefit">0 円</span>
                                 </div>
                             </div>
                             <hr class="my-4 max-w-md mx-auto">
                             <p class="text-lg text-slate-700">合計改善額</p>
                             <p class="text-5xl md:text-6xl font-bold text-green-600 my-3" id="combined-total-benefit">0 円</p>
+                            <p class="text-slate-600">月額換算 約 <span id="combined-monthly" class="font-bold">0</span> 円、手残りが増える計算です。</p>
                         </div>
                     </div>
                 </section>
              </div>
         </section>
-
     </main>
-
     <footer id="contact" class="bg-[var(--color-navy)] text-white py-20">
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-4">お問い合わせ</h2>
@@ -418,11 +447,8 @@
             </div>
         </div>
     </footer>
-
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-
             // --- 粒子アニメーション ---
             const canvas = document.getElementById('particle-canvas');
             if (canvas) {
@@ -447,25 +473,21 @@
                 setupCanvas(); createParticles(); animate();
                 window.addEventListener('resize', () => { setupCanvas(); createParticles(); });
             }
-
             // --- スクロールリビール ---
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
             }, { threshold: 0.1 });
             document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
-
             // --- スムーズスクロール ---
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) { e.preventDefault(); document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' }); });
             });
-
             // ============================================================
             // 定数
             // ============================================================
             const CORPORATE_TAX_RATE  = 0.30;
             const RESIDENT_TAX_RATE   = 0.10;
             const BASIC_DEDUCTION     = 480000;
-
             // ============================================================
             // 社会保険料 等級テーブル（令和8年3月分〜 東京支部）
             // 介護保険非該当（40歳未満 or 65歳以上）を前提
@@ -525,7 +547,6 @@
                 { grade: 49, stdMonthly:  1330000, lowerBound: 1295000, healthTotal:131005.0, pensionTotal: 118950.0 },
                 { grade: 50, stdMonthly:  1390000, lowerBound: 1355000, healthTotal:136915.0, pensionTotal: 118950.0 },
             ];
-
             /**
              * 月額報酬から等級テーブルを引いて月間社会保険料を返す
              * 役員は報酬がゼロでも等級1（58,000円）が下限
@@ -540,7 +561,6 @@
                 const monthlyCompany  = monthlyTotal / 2;
                 return { row, monthlyTotal, monthlyPersonal, monthlyCompany };
             }
-
             // ============================================================
             // 所得税・住民税計算
             // ============================================================
@@ -552,7 +572,6 @@
                 if (annualIncome <= 8500000)  return annualIncome * 0.1  + 1100000;
                 return 1950000;
             }
-
             function calculateIncomeTax(taxableIncome) {
                 let tax = 0, ded = 0;
                 if      (taxableIncome <=  1949000) { tax = taxableIncome * 0.05; ded =       0; }
@@ -564,7 +583,6 @@
                 else                                { tax = taxableIncome * 0.45; ded = 4796000; }
                 return Math.max(0, (tax - ded) * 1.021);
             }
-
             function calcTaxBurden(annualComp, annualPersonalSI) {
                 const salaryDed     = calculateSalaryIncomeDeduction(annualComp);
                 const taxableIncome = Math.max(0, annualComp - annualPersonalSI - salaryDed - BASIC_DEDUCTION);
@@ -572,14 +590,12 @@
                 const residentTax   = taxableIncome * RESIDENT_TAX_RATE;
                 return { taxableIncome, incomeTax, residentTax, salaryDed };
             }
-
             // ============================================================
             // ユーティリティ
             // ============================================================
             const formatCurrency  = (num) => new Intl.NumberFormat('ja-JP').format(Math.round(num));
             const parseCurrency   = (str) => { const p = parseFloat(String(str).replace(/,/g, '')); return isNaN(p) ? 0 : p; };
             const ceilToNearestTen = (num) => Math.ceil(num / 10) * 10;
-
             function setupSliderSync(sliderId, inputId, isCurrency = true) {
                 const slider = document.getElementById(sliderId);
                 const input  = document.getElementById(inputId);
@@ -588,38 +604,30 @@
                 input.addEventListener('change',  () => { let v = isCurrency ? parseCurrency(input.value) : parseFloat(input.value); if (isNaN(v)) v = 0; slider.value = v; input.value = isCurrency ? formatCurrency(v) : v; });
                 input.value = isCurrency ? formatCurrency(slider.value) : slider.value;
             }
-
             // ============================================================
             // Step1：標準シミュレーター（等級テーブル版）
             // ============================================================
             setupSliderSync('standard-compensation-slider', 'standard-compensation-input');
             setupSliderSync('standard-rent-slider',         'standard-rent-input');
             setupSliderSync('standard-burden-amount-slider','standard-burden-amount-input');
-
             function calcStandardResult(monthlyComp, monthlyRent, personalBurdenAmount) {
                 const companyRentBurden  = monthlyRent - personalBurdenAmount;
                 const newMonthlyComp     = Math.max(0, monthlyComp - companyRentBurden);
-
                 const siBefore = getSIByMonthlyComp(monthlyComp);
                 const siAfter  = getSIByMonthlyComp(newMonthlyComp);
-
                 const annualSIPersonalBefore = siBefore.monthlyPersonal * 12;
                 const annualSIPersonalAfter  = siAfter.monthlyPersonal  * 12;
                 const annualSICompanyBefore  = siBefore.monthlyCompany  * 12;
                 const annualSICompanyAfter   = siAfter.monthlyCompany   * 12;
-
                 const annualCompBefore = monthlyComp    * 12;
                 const annualCompAfter  = newMonthlyComp * 12;
-
                 const taxBefore = calcTaxBurden(annualCompBefore, annualSIPersonalBefore);
                 const taxAfter  = calcTaxBurden(annualCompAfter,  annualSIPersonalAfter);
-
                 const corporateSISaving  = annualSICompanyBefore - annualSICompanyAfter;
                 const personalSISaving   = annualSIPersonalBefore - annualSIPersonalAfter;
                 const taxSaving          = (taxBefore.incomeTax + taxBefore.residentTax) - (taxAfter.incomeTax + taxAfter.residentTax);
                 const personalTotal      = personalSISaving + taxSaving;
                 const totalBenefit       = corporateSISaving + personalTotal;
-
                 return {
                     monthlyComp, newMonthlyComp, companyRentBurden,
                     siBefore, siAfter,
@@ -631,21 +639,17 @@
                     personalTotal, totalBenefit
                 };
             }
-
             document.getElementById('standard-calculate-btn').addEventListener('click', () => {
                 const monthlyComp         = parseCurrency(document.getElementById('standard-compensation-input').value);
                 const monthlyRent         = parseCurrency(document.getElementById('standard-rent-input').value);
                 const personalBurdenAmount = parseCurrency(document.getElementById('standard-burden-amount-input').value);
-
                 const r = calcStandardResult(monthlyComp, monthlyRent, personalBurdenAmount);
-
                 document.getElementById('standard-total-savings').textContent         = formatCurrency(ceilToNearestTen(r.totalBenefit));
                 document.getElementById('standard-corporate-saving').textContent      = formatCurrency(ceilToNearestTen(r.corporateSISaving));
                 document.getElementById('standard-corporate-saving-total').textContent = formatCurrency(ceilToNearestTen(r.corporateSISaving));
                 document.getElementById('standard-si-personal-saving').textContent    = formatCurrency(ceilToNearestTen(r.personalSISaving));
                 document.getElementById('standard-income-tax-saving').textContent     = formatCurrency(ceilToNearestTen(r.taxSaving));
                 document.getElementById('standard-personal-saving').textContent       = formatCurrency(ceilToNearestTen(r.personalTotal));
-
                 // 等級テーブルを使った詳細内訳（社会保険料）
                 const gradeNote = r.siAfter.row.grade === 1 && r.newMonthlyComp < 58000
                     ? `<span class="text-orange-600 font-semibold">※報酬が58,000円を下回るため、最低等級（等級1）で計算しています。</span><br>`
@@ -653,7 +657,6 @@
                 const sameGradeNote = r.siBefore.row.grade === r.siAfter.row.grade
                     ? `<span class="text-orange-600 font-semibold">⚠ 導入前後で等級が変わらないため、社会保険料の削減効果はゼロです。</span><br>`
                     : '';
-
                 document.getElementById('detail-standard-social-content').innerHTML =
                     `<strong>【導入前】</strong><br>` +
                     `月額報酬: ${formatCurrency(r.monthlyComp)}円 → <strong>等級${r.siBefore.row.grade}（標準報酬月額 ${formatCurrency(r.siBefore.row.stdMonthly)}円）</strong><br>` +
@@ -669,7 +672,6 @@
                     `会社負担 合計: ${formatCurrency(r.siAfter.monthlyCompany)}円/月 → 年間 <strong>${formatCurrency(r.annualSICompanyAfter)}円</strong><br>` +
                     `<br>` + sameGradeNote +
                     `<strong class="text-green-700">法人側 削減額: ${formatCurrency(ceilToNearestTen(r.corporateSISaving))}円/年</strong>`;
-
                 // 詳細内訳（所得税・住民税）
                 document.getElementById('detail-standard-tax-content').innerHTML =
                     `<strong>【導入前】</strong><br>` +
@@ -689,9 +691,7 @@
                     `住民税（10%）: ${formatCurrency(r.taxAfter.residentTax)}円<br>` +
                     `所得税＋住民税 合計: ${formatCurrency(r.taxAfter.incomeTax + r.taxAfter.residentTax)}円/年<br>` +
                     `<br><strong class="text-green-700">削減額: ${formatCurrency(ceilToNearestTen(r.taxSaving))}円/年</strong>`;
-
                 document.getElementById('standard-results').classList.add('show');
-
                 // 再計算時にパネルリセット
                 document.querySelectorAll('[id^="detail-standard-"]').forEach(panel => {
                     panel.classList.remove('show');
@@ -702,7 +702,6 @@
                     }
                 });
             });
-
             // ============================================================
             // Step2：Advanced Simulator
             // ============================================================
@@ -714,23 +713,31 @@
             const advCompInput  = document.getElementById('advanced-compensation-input');
             const advRentSlider = document.getElementById('advanced-rent-slider');
             const advRentInput  = document.getElementById('advanced-rent-input');
-
             function syncAdvancedInputs() {
                 advCompSlider.value = stdCompSlider.value;
                 advCompInput.value  = stdCompInput.value;
                 advRentSlider.value = stdRentSlider.value;
                 advRentInput.value  = stdRentInput.value;
+                updateFeeYen();
             }
             stdCompSlider.addEventListener('input',  syncAdvancedInputs);
             stdCompInput.addEventListener('change',  syncAdvancedInputs);
             stdRentSlider.addEventListener('input',  syncAdvancedInputs);
             stdRentInput.addEventListener('change',  syncAdvancedInputs);
-            syncAdvancedInputs();
-
             setupSliderSync('service-fee-slider', 'service-fee-input', false);
             setupSliderSync('key-money-slider',   'key-money-input',   false);
             setupSliderSync('utility-slider',     'utility-input');
-
+            // --- サービス料の円換算をリアルタイム表示（%だけを見せない） ---
+            function updateFeeYen() {
+                const rent = parseCurrency(advRentInput.value);
+                const rate = parseFloat(document.getElementById('service-fee-input').value) / 100 || 0;
+                document.getElementById('service-fee-yen').textContent = formatCurrency(rent * rate);
+            }
+            ['input', 'change'].forEach(evt => {
+                document.getElementById('service-fee-slider').addEventListener(evt, updateFeeYen);
+                document.getElementById('service-fee-input').addEventListener(evt, updateFeeYen);
+            });
+            syncAdvancedInputs();
             function getPersonalBurdenRate(annualCompensation) {
                 const si = getSIByMonthlyComp(annualCompensation / 12);
                 const annualSIPersonal = si.monthlyPersonal * 12;
@@ -741,55 +748,65 @@
                 const totalPersonalBurden = annualSIPersonal + incomeTax + residentTax;
                 return annualCompensation === 0 ? 1 : totalPersonalBurden / annualCompensation;
             }
-
             document.getElementById('advanced-calculate-btn').addEventListener('click', () => {
                 const monthlyCompensation  = parseCurrency(advCompInput.value);
                 const originalMonthlyRent  = parseCurrency(advRentInput.value);
                 const gpServiceFeeRate     = parseFloat(document.getElementById('service-fee-input').value) / 100;
                 const keyMoneyMonths       = parseFloat(document.getElementById('key-money-input').value);
                 const utilityCostMonthly   = parseCurrency(document.getElementById('utility-input').value);
-
                 const gpServiceFee         = originalMonthlyRent * gpServiceFeeRate;
                 const newTotalMonthlyRent  = originalMonthlyRent + gpServiceFee + utilityCostMonthly;
-
                 const twoYearNewOpex       = (gpServiceFee + utilityCostMonthly) * 24;
                 const twoYearOpexSavings   = twoYearNewOpex * CORPORATE_TAX_RATE;
-
                 const totalKeyMoney        = newTotalMonthlyRent * keyMoneyMonths;
                 const keyMoneyCorpSavings  = totalKeyMoney * CORPORATE_TAX_RATE;
-
                 const annualCompensation   = monthlyCompensation * 12;
                 const personalBurdenRate   = getPersonalBurdenRate(annualCompensation);
                 const grossUpFactor        = 1 / (1 - personalBurdenRate);
-
                 const personalBurdenKeyMoney      = totalKeyMoney;
                 const requiredGrossKeyMoney       = personalBurdenKeyMoney * grossUpFactor;
                 const personalCfImprovementKeyMoney = requiredGrossKeyMoney - personalBurdenKeyMoney;
-
                 const personalBurdenUtilities     = utilityCostMonthly * 24;
                 const requiredGrossUtilities      = personalBurdenUtilities * grossUpFactor;
                 const personalCfImprovementUtilities = requiredGrossUtilities - personalBurdenUtilities;
-
                 const totalPersonalCfImprovement  = personalCfImprovementKeyMoney + personalCfImprovementUtilities;
                 const totalTwoYearSavings          = twoYearOpexSavings + keyMoneyCorpSavings + totalPersonalCfImprovement;
                 const twoYearServiceFee            = gpServiceFee * 24;
                 const netProfit                    = totalTwoYearSavings - twoYearServiceFee;
-
-                document.getElementById('advanced-total-savings').textContent         = formatCurrency(totalTwoYearSavings);
+                // --- ヘッドライン：ネット額ファースト ---
+                const netSign = netProfit >= 0 ? '+' : '−';
+                document.getElementById('advanced-net-headline').textContent = netSign + formatCurrency(Math.abs(netProfit));
+                document.getElementById('headline-benefit').textContent = formatCurrency(totalTwoYearSavings);
+                document.getElementById('headline-fee').textContent     = formatCurrency(twoYearServiceFee);
+                // --- 実質サービス料（月額換算） ---
+                document.getElementById('nominal-monthly-fee').textContent = formatCurrency(gpServiceFee);
+                const effMonthly = (twoYearServiceFee - totalTwoYearSavings) / 24;
+                const effEl   = document.getElementById('effective-monthly-fee');
+                const effNote = document.getElementById('effective-fee-note');
+                if (effMonthly <= 0) {
+                    effEl.textContent = '実質手出し 0円';
+                    effEl.className   = 'text-2xl font-bold my-2 text-green-600';
+                    effNote.textContent = '利用料金は試算上のメリットの範囲内に収まり、2年間でさらに ' + formatCurrency(netProfit) + ' 円が手元に残る計算です。';
+                } else {
+                    effEl.textContent = '実質 ' + formatCurrency(effMonthly) + ' 円/月';
+                    effEl.className   = 'text-2xl font-bold my-2 text-slate-800';
+                    effNote.textContent = 'メリット差引後の実質負担額です。';
+                }
+                // --- 個人のお金の壁（100万円あたり比較） ---
+                document.getElementById('wall-gross').textContent = formatCurrency(1000000 * grossUpFactor);
+                document.getElementById('wall-corp').textContent  = formatCurrency(1000000 * (1 - CORPORATE_TAX_RATE));
+                document.getElementById('advanced-total-savings') && (document.getElementById('advanced-total-savings').textContent = formatCurrency(totalTwoYearSavings));
                 document.getElementById('advanced-opex-savings').textContent          = formatCurrency(twoYearOpexSavings);
                 document.getElementById('advanced-key-money-corp-savings').textContent = formatCurrency(keyMoneyCorpSavings);
                 document.getElementById('advanced-personal-cf-savings').textContent   = formatCurrency(totalPersonalCfImprovement);
                 document.getElementById('final-total-benefit').textContent            = formatCurrency(totalTwoYearSavings) + " 円";
                 document.getElementById('final-total-cost').textContent              = formatCurrency(twoYearServiceFee) + " 円";
                 document.getElementById('final-net-profit').textContent              = formatCurrency(netProfit) + " 円";
-
                 document.getElementById('advanced-opex-details').innerHTML =
-                    `(月額サービス料 ${formatCurrency(gpServiceFee)}円 + 水道光熱費 ${formatCurrency(utilityCostMonthly)}円) × 24ヶ月 × 法人税率 ${CORPORATE_TAX_RATE*100}%`;
-
+                    `(月額利用料金 ${formatCurrency(gpServiceFee)}円 + 水道光熱費 ${formatCurrency(utilityCostMonthly)}円) × 24ヶ月 × 法人税率 ${CORPORATE_TAX_RATE*100}%（試算）`;
                 document.getElementById('advanced-key-money-details').innerHTML =
                     `新家賃 ${formatCurrency(newTotalMonthlyRent)}円 × ${keyMoneyMonths}ヶ月 = ${formatCurrency(totalKeyMoney)}円<br>` +
                     `礼金合計 ${formatCurrency(totalKeyMoney)}円 × 法人税率 ${CORPORATE_TAX_RATE*100}%`;
-
                 document.getElementById('advanced-personal-cf-details').innerHTML =
                     `役員報酬 ${formatCurrency(monthlyCompensation)}円（年収 ${formatCurrency(annualCompensation)}円）の場合、<br>` +
                     `個人の税・社会保険料の実効負担率は約 <strong>${(personalBurdenRate * 100).toFixed(1)}%</strong>（等級テーブル使用）<br><br>` +
@@ -800,9 +817,7 @@
                     `手取りで ${formatCurrency(personalBurdenUtilities)}円を支払うには、税引前で約 <strong>${formatCurrency(requiredGrossUtilities)}</strong> の報酬が必要<br>` +
                     `効果額: ${formatCurrency(personalCfImprovementUtilities)}円<br>` +
                     `<hr class="my-2 border-slate-400"><strong>合計効果額: ${formatCurrency(totalPersonalCfImprovement)}円</strong>`;
-
                 document.getElementById('advanced-results').classList.add('show');
-
                 // Combined Results
                 const monthlyCompStd         = parseCurrency(stdCompInput.value);
                 const monthlyRentStd         = parseCurrency(stdRentInput.value);
@@ -810,13 +825,12 @@
                 const stdResult              = calcStandardResult(monthlyCompStd, monthlyRentStd, personalBurdenAmountStd);
                 const standardTwoYearBenefit = stdResult.totalBenefit * 2;
                 const combinedTotal          = standardTwoYearBenefit + netProfit;
-
                 document.getElementById('combined-standard-benefit').textContent = formatCurrency(standardTwoYearBenefit) + ' 円';
                 document.getElementById('combined-advanced-benefit').textContent  = formatCurrency(netProfit) + ' 円';
                 document.getElementById('combined-total-benefit').textContent     = formatCurrency(combinedTotal) + ' 円';
+                document.getElementById('combined-monthly').textContent           = formatCurrency(combinedTotal / 24);
                 document.getElementById('combined-results').classList.add('show');
             });
-
             // ============================================================
             // トグルボタン（詳細パネル開閉）
             // ============================================================
@@ -834,7 +848,6 @@
                 if (label) label.textContent = isOpen ? '計算の内訳を見る' : '内訳を閉じる';
                 if (arrow) arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
             });
-
         });
     </script>
 </body>
