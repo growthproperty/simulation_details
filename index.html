@@ -293,7 +293,7 @@
                                 <input type="text" id="service-fee-input" value="20" class="w-32 text-right bg-slate-100 rounded-md border-slate-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" inputmode="numeric">
                                 <span class="text-sm">%</span>
                             </div>
-                            <p class="text-xs text-slate-500 mt-1">= 月額 <span id="service-fee-yen" class="font-bold text-slate-700">60,000</span> 円（家具家電の調達・引越し手配・インテリアコーディネート込み）<br></p>
+                            <p class="text-xs text-slate-500 mt-1">= 月額 <span id="service-fee-yen" class="font-bold text-slate-700">60,000</span> 円（家具家電の調達・引越し手配・インテリアコーディネート込み）<br>※クレジットカード決済に対応しています（追加手数料なし）。</p>
                         </div>
                         <div>
                             <label for="key-money-input" class="block text-sm font-medium text-slate-700 mb-2">礼金（対新家賃）</label>
@@ -314,7 +314,11 @@
                             <p class="text-xs text-slate-500 mt-1">毎月の実費相当分を、家賃と合わせて一本化します。</p>
                         </div>
                     </div>
-                    <div class="mt-8 text-center">
+                    <div class="mt-6 bg-slate-50 border border-slate-200 rounded-lg p-4 text-center">
+                        <p class="text-xs text-slate-500 mb-1">この条件での新しい家賃（家具家電・引越し・光熱費・サポートすべて込み）</p>
+                        <p class="text-2xl font-bold text-slate-800"><span id="new-rent-total">390,000</span> 円/月</p>
+                    </div>
+                    <div class="mt-6 text-center">
                         <button id="advanced-calculate-btn" class="bg-blue-600 text-white font-bold py-3 px-10 rounded-lg hover:bg-blue-700 transition duration-300 text-lg shadow-md hover:shadow-lg">
                             メリットを計算
                         </button>
@@ -328,6 +332,28 @@
                             <p class="text-lg text-slate-700">利用料金を全額差し引いても、2年間の手残りは...</p>
                             <p class="text-4xl md:text-5xl font-bold text-green-600 my-4"><span id="advanced-net-headline">0</span> 円</p>
                             <p class="text-sm text-slate-500">（メリット合計 <span id="headline-benefit">0</span> 円 − 利用料金 <span id="headline-fee">0</span> 円）</p>
+                        </div>
+
+                        <div class="bg-white border-2 border-green-500 rounded-xl p-5 mb-8 text-center">
+                            <p class="text-xs font-bold text-slate-500 tracking-widest mb-3">実質の家賃負担（試算）</p>
+                            <div class="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-6 text-slate-700">
+                                <div>
+                                    <p class="text-xs text-slate-500">現在の家賃</p>
+                                    <p class="text-xl font-bold"><span id="eff-old-rent">0</span> 円/月</p>
+                                </div>
+                                <div class="text-2xl text-slate-400">−</div>
+                                <div>
+                                    <p class="text-xs text-slate-500">純メリットの月割り（利用料金差引後）</p>
+                                    <p class="text-xl font-bold text-green-600"><span id="eff-monthly-merit">0</span> 円/月</p>
+                                </div>
+                                <div class="text-2xl text-slate-400">=</div>
+                                <div>
+                                    <p class="text-xs text-slate-500">実質のご負担</p>
+                                    <p class="text-3xl font-bold text-green-700"><span id="eff-net-rent">0</span> 円/月</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-slate-600 mt-3" id="eff-rent-compare"></p>
+                            <p class="text-xs text-slate-400 mt-2">※差し引いているのは利用料金を全額支払った後の純メリットです。光熱費は従来・新プランの両方に同額含まれるため、比較上は相殺されます。</p>
                         </div>
 
                         <div class="grid md:grid-cols-2 gap-6 mb-8">
@@ -392,20 +418,6 @@
                             </div>
                         </div>
                         <p class="mt-4 text-xs text-slate-500">※本試算は、礼金・水道光熱費相当額を「従来はご自身の手取り等で支払っていた家具・家電・引越し・光熱費の置き換え」とみなした場合の比較です。そのため、追加コストには利用料金のみを計上しています。<br>※本シミュレーションは一定の前提に基づく概算であり、税務上の取り扱いを保証するものではありません。実際の処理は必ず顧問税理士にご確認ください。</p>
-                        <div class="mt-8 pt-8 border-t-2 border-dashed">
-                            <h3 class="text-xl md:text-2xl font-bold mb-6 text-center text-slate-900">費用対効果の分析</h3>
-                            <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-lg text-center">
-                                <div class="flex flex-col items-center">
-                                    <div class="text-lg text-slate-700">2年間のメリット合計</div>
-                                    <div class="text-3xl font-bold text-slate-800 my-2" id="final-total-benefit">0 円</div>
-                                    <div class="text-lg text-slate-700">- 2年間のコスト合計（利用料金）</div>
-                                    <div class="text-3xl font-bold text-red-600 my-2" id="final-total-cost">0 円</div>
-                                    <hr class="w-24 border-t-2 border-slate-400 my-2">
-                                    <div class="text-lg text-slate-700">= 2年間の実質手残り増加</div>
-                                    <div class="text-4xl md:text-5xl font-bold text-green-600 mt-2" id="final-net-profit">0 円</div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </section>
                 <section id="combined-results" class="max-w-4xl mx-auto result-card">
@@ -729,13 +741,17 @@
             setupSliderSync('utility-slider',     'utility-input');
             // --- サービス料の円換算をリアルタイム表示（%だけを見せない） ---
             function updateFeeYen() {
-                const rent = parseCurrency(advRentInput.value);
-                const rate = parseFloat(document.getElementById('service-fee-input').value) / 100 || 0;
+                const rent    = parseCurrency(advRentInput.value);
+                const rate    = parseFloat(document.getElementById('service-fee-input').value) / 100 || 0;
+                const utility = parseCurrency(document.getElementById('utility-input').value);
                 document.getElementById('service-fee-yen').textContent = formatCurrency(rent * rate);
+                document.getElementById('new-rent-total').textContent  = formatCurrency(rent * (1 + rate) + utility);
             }
             ['input', 'change'].forEach(evt => {
                 document.getElementById('service-fee-slider').addEventListener(evt, updateFeeYen);
                 document.getElementById('service-fee-input').addEventListener(evt, updateFeeYen);
+                document.getElementById('utility-slider').addEventListener(evt, updateFeeYen);
+                document.getElementById('utility-input').addEventListener(evt, updateFeeYen);
             });
             syncAdvancedInputs();
             function getPersonalBurdenRate(annualCompensation) {
@@ -795,13 +811,23 @@
                 // --- 個人のお金の壁（100万円あたり比較） ---
                 document.getElementById('wall-gross').textContent = formatCurrency(1000000 * grossUpFactor);
                 document.getElementById('wall-corp').textContent  = formatCurrency(1000000 * (1 - CORPORATE_TAX_RATE));
+                // --- 実質の家賃負担（元家賃 − 純メリット月割り） ---
+                const monthlyNetMerit = netProfit / 24;
+                const effNetRent      = originalMonthlyRent - monthlyNetMerit;
+                document.getElementById('eff-old-rent').textContent      = formatCurrency(originalMonthlyRent);
+                document.getElementById('eff-monthly-merit').textContent = formatCurrency(monthlyNetMerit);
+                document.getElementById('eff-net-rent').textContent      = formatCurrency(effNetRent);
+                let cmpHtml;
+                if (monthlyNetMerit >= 0) {
+                    cmpHtml = `お支払いの総額は月 ${formatCurrency(newTotalMonthlyRent)}円（利用料・光熱費込み）ですが、メリット反映後の実質負担は現在の家賃より<strong class="text-green-700">月 ${formatCurrency(monthlyNetMerit)}円 軽くなる</strong>計算です。`;
+                } else {
+                    cmpHtml = `この条件では、メリット反映後も現在の家賃より<strong class="text-red-600">月 ${formatCurrency(-monthlyNetMerit)}円 重くなる</strong>計算です。`;
+                }
+                document.getElementById('eff-rent-compare').innerHTML = cmpHtml;
                 document.getElementById('advanced-total-savings') && (document.getElementById('advanced-total-savings').textContent = formatCurrency(totalTwoYearSavings));
                 document.getElementById('advanced-opex-savings').textContent          = formatCurrency(twoYearOpexSavings);
                 document.getElementById('advanced-key-money-corp-savings').textContent = formatCurrency(keyMoneyCorpSavings);
                 document.getElementById('advanced-personal-cf-savings').textContent   = formatCurrency(totalPersonalCfImprovement);
-                document.getElementById('final-total-benefit').textContent            = formatCurrency(totalTwoYearSavings) + " 円";
-                document.getElementById('final-total-cost').textContent              = formatCurrency(twoYearServiceFee) + " 円";
-                document.getElementById('final-net-profit').textContent              = formatCurrency(netProfit) + " 円";
                 document.getElementById('advanced-opex-details').innerHTML =
                     `(月額利用料金 ${formatCurrency(gpServiceFee)}円 + 水道光熱費 ${formatCurrency(utilityCostMonthly)}円) × 24ヶ月 × 法人税率 ${CORPORATE_TAX_RATE*100}%（試算）`;
                 document.getElementById('advanced-key-money-details').innerHTML =
